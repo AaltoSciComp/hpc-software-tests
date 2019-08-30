@@ -1,0 +1,52 @@
+#!/bin/bash
+#SBATCH -p short
+#SBATCH -t 00:30:00
+#SBATCH -N 2-2
+#SBATCH -n 2
+#SBATCH --mem-per-cpu=2G
+#SBATCH -C 'hsw|ivb'
+
+set -euo pipefail
+
+if [[ $# -lt 1 ]]; then
+    cat << EOF
+    usage:
+
+        sbatch $(basename $0) mpi-flavor/mpi-version
+
+EOF
+    exit 1
+fi
+
+SCRIPTDIR=`pwd`
+
+MPI_NAME=$1
+
+NSLASHES=$(echo $MPI_NAME | tr -cd '/' | wc -c)
+
+if [ $NSLASHES -ne 1 ] ; then
+    echo 'MPI name "'$MPI_NAME'" is not in format "mpi-flavor/mpi-version"'
+    exit 1
+fi
+
+echo 'Loading MPI module '$MPI_NAME
+
+module --ignore_cache load $MPI_NAME
+module list
+
+INSTALLDIR=$SCRIPTDIR/bin/$MPI_NAME
+if [ ! -d $INSTALLDIR ]; then
+    echo 'No installation directory in '$INSTALLDIR
+    exit 1
+fi
+OUTPUT=$SCRIPTDIR/output/${MPI_NAME}.out
+
+mkdir -p $(dirname $OUTPUT)
+
+echo 'Running benchmarks from: '$INSTALLDIR | tee $OUTPUT
+echo 'mpicc used for compiling: '$(which mpicc) | tee -a $OUTPUT
+echo 'Writing output to: '$OUTPUT | tee -a $OUTPUT
+
+cd ${INSTALLDIR}
+
+find ${INSTALLDIR} -type f -execdir srun -n 2 {} \; | tee -a $OUTPUT
