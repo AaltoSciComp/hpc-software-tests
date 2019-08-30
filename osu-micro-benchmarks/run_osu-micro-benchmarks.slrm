@@ -49,4 +49,17 @@ echo 'Writing output to: '$OUTPUT | tee -a $OUTPUT
 
 cd ${INSTALLDIR}
 
-find ${INSTALLDIR} -type f -execdir srun -n 2 {} \; | tee -a $OUTPUT
+run_test() {
+    CURRENT_FOLDER=$(pwd)
+    TEST_FILE=$(readlink -f $1)
+    TEST_FOLDER=$(dirname $TEST_FILE)
+    TEST_NAME=$(basename $TEST_FILE)
+    echo 'Running test '$TEST_NAME':'
+    cd $TEST_FOLDER
+    srun $TEST_NAME
+    cd $CURRENT_FOLDER
+}
+
+export -f run_test
+
+find ${INSTALLDIR} -type f | xargs -n 1 -I {} bash -c 'run_test "$@"' _ {} | tee -a $OUTPUT

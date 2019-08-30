@@ -20,3 +20,7 @@ sbatch run_osu-micro-benchmarks.slrm <mpi-module>/<mpi-version>
 ```
 
 Outputs will be written to `output/<mpi-module>/<mpi-version>.out`.
+
+## Known issues
+
+- For OpenMPI 3.1.4 the one-sided latency test will hang. It can be skipped by removing it with `rm bin/openmpi/3.1.4/libexec/osu-micro-benchmarks/mpi/one-sided/osu_acc_latency`
