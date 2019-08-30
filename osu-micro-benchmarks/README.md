@@ -19,4 +19,4 @@ module purge
 sbatch run_osu-micro-benchmarks.slrm <mpi-module>/<mpi-version>
 ```
 
-Outputs will be written in `output/<mpi-module>/<mpi-version>`-folder.
+Outputs will be written to `output/<mpi-module>/<mpi-version>.out`.
