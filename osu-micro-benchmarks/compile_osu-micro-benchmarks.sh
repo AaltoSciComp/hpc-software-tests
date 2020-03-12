@@ -44,6 +44,6 @@ cp ${BENCHMARK}.tar.gz ${BUILDDIR}
 cd ${BUILDDIR}
 tar xvzf ${BENCHMARK}.tar.gz
 cd ${BENCHMARK}
-./configure --prefix=${INSTALLDIR} CC=mpicc CXX=mpicxx
+./configure --prefix=${INSTALLDIR}
 make -j 2
 make install
