@@ -2,11 +2,11 @@
 
 set -euo pipefail
 
-if [[ $# -lt 1 ]]; then
+if [[ $# -lt 3 ]]; then
     cat << EOF
     usage:
 
-        $0 mpi-flavor/mpi-version
+        $0 mpi-flavor/mpi-version MPICC MPICXX
 
 EOF
     exit 1
@@ -15,6 +15,8 @@ fi
 SCRIPTDIR=`readlink -f $(dirname $0)`
 
 MPI_NAME=$1
+MPICC=$2
+MPICXX=$3
 
 NSLASHES=$(echo $MPI_NAME | tr -cd '/' | wc -c)
 
@@ -44,6 +46,6 @@ cp ${BENCHMARK}.tar.gz ${BUILDDIR}
 cd ${BUILDDIR}
 tar xvzf ${BENCHMARK}.tar.gz
 cd ${BENCHMARK}
-./configure --prefix=${INSTALLDIR}
+./configure CC=${MPICC} CXX=${MPICXX} --prefix=${INSTALLDIR}
 make -j 2
 make install
