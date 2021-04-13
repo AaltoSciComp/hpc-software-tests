@@ -32,4 +32,4 @@ Outputs will be written to `output/<mpi-module>/<mpi-version>.out`.
 - For OpenMPI 3.1.4 the one-sided latency test will hang. It can be skipped by removing it from `rm bin/openmpi/3.1.4/libexec/osu-micro-benchmarks/mpi/one-sided/`
 - For OpenMPI 3.1.4 with UCX the following tests will hang: `osu_acc_latency`,`osu_fop_latency` and `osu_get_acc_latency`. It can be skipped by removing them from `bin/openmpi/3.1.4/libexec/osu-micro-benchmarks/mpi/one-sided/`
 
-
+To remove said problems, one can run e.g. `rm bin/openmpi/*/libexec/osu-micro-benchmarks/mpi/one-sided/{osu_acc_latency,osu_fop_latency,osu_get_acc_latency} bin/openmpi/*/libexec/osu-micro-benchmarks/mpi/pt2pt/osu_latency_mt`
