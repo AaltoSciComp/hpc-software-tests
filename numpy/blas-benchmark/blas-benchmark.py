@@ -13,7 +13,7 @@ np.random.seed(0)
 
 print('Starting benchmark')
 
-size = 4096
+size = 2048
 A, B = np.random.random((size, size)), np.random.random((size, size))
 C, D = np.random.random((size * 128,)), np.random.random((size * 128,))
 E = np.random.random((int(size / 2), int(size / 4)))

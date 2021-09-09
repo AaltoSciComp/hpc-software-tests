@@ -1,6 +1,5 @@
 tests:
   tensorflow_beginner:
-   # skip: True
     script: 'tensorflow/beginner/run_tensorflow_beginner.sh'
     modules:
       - anaconda/2021-01-tf2
@@ -10,3 +9,13 @@ tests:
       mem: 8G
       time: 00:15:00
       gres: gpu:1
+  numpy_blas-benchmark:
+    script: 'numpy/blas-benchmark/run_blas-benchmark.sh'
+    modules:
+      - anaconda/2021-01-tf2
+      - anaconda/2021-02-tf2
+      - anaconda/2021-03-tf2
+    requirements:
+      mem: 8G
+      time: 00:15:00
+      cpus-per-task: 4
