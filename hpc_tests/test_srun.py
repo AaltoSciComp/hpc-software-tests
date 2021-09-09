@@ -1,10 +1,11 @@
 import os
-import pytest
+import sys
 import warnings
+import pytest
 
 with warnings.catch_warnings():
     warnings.filterwarnings("ignore",category=DeprecationWarning)
-    from sh import srun
+    from sh import srun, ErrorReturnCode
 
 @pytest.fixture
 def srun_script():
@@ -56,9 +57,14 @@ def test_srun(srun_script, srun_module, srun_requirements, srun_skip):
 
     if not srun_skip:
         # Run script through Slurm, check that exit code is 0
-        srun_output = srun(*args, _cwd=script_folder)
-        print('Standard output of run:\n%s' % srun_output)
+        try:
+            srun_output = srun(*args, _cwd=script_folder, _out=sys.stdout, _err=sys.stderr)
+        except ErrorReturnCode as error:
+            print('Error encountered during script run!')
+            srun_output = error
+        
+        assert srun_output.exit_code == 0, \
+            "Exit code was not zero'"
 
-        assert srun_output.exit_code == 0
     else:
         pytest.skip('Skipping the test due to config')
