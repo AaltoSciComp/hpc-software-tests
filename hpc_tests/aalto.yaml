@@ -10,8 +10,18 @@ tests:
   numpy_blas-benchmark:
     script: 'numpy/blas-benchmark/run_blas-benchmark.sh'
     modules:
+      - anaconda/2021-01-tf2
       - anaconda/2021-03-tf2
     requirements:
       mem: 8G
       time: 00:15:00
       cpus-per-task: 4
+  mpi_hello-world:
+    script: 'mpi/hello-world/run_hello-world.sh'
+    modules:
+      - openmpi/4.0.5
+    requirements:
+      mem: 2G
+      time: 00:15:00
+      ntasks-per-node: 2
+      nodes: '2-2'
