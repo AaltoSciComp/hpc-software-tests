@@ -28,29 +28,29 @@ def pytest_generate_tests(metafunc):
     # Split tests-argument
     test_categories = tests.split(',')
 
-    if "srun_script" in metafunc.fixturenames:
+    if "sbatch_script" in metafunc.fixturenames:
         parameters = []
         ids = []
         for test_name, test_conf in conf["tests"].items():
             # Generate test category
             test_category = test_name.split("_")[0]
 
-            # Deal with srun tests
+            # Deal with sbatch tests
             # Determine script
-            srun_script = test_conf["script"]
+            sbatch_script = test_conf["script"]
             # Determine Slurm requirements
-            srun_requirements = test_conf["requirements"]
+            sbatch_requirements = test_conf["requirements"]
             # Determine whether test should be skipped
-            srun_skip = test_conf.get("skip", False)
+            sbatch_skip = test_conf.get("skip", False)
             if test_category not in test_categories and not run_all:
-                srun_skip = True
+                sbatch_skip = True
             # Create parameters for each module we want to test
             parameters.extend([
-                (srun_script, module_name, srun_requirements, srun_skip) for module_name in test_conf["modules"]
+                (sbatch_script, module_name, sbatch_requirements, sbatch_skip) for module_name in test_conf["modules"]
             ])
             # Create id for each test
             ids.extend([
             '{0}-{1}'.format(test_name, module_name.replace('/', '_')) for module_name in test_conf["modules"]
             ])
         # Set test parameters and name
-        metafunc.parametrize("srun_script,srun_module,srun_requirements,srun_skip", parameters, ids=ids)
+        metafunc.parametrize("sbatch_script,sbatch_module,sbatch_requirements,sbatch_skip", parameters, ids=ids)

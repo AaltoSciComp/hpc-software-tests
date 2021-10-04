@@ -10,7 +10,6 @@ tests:
   numpy_blas-benchmark:
     script: 'numpy/blas-benchmark/run_blas-benchmark.sh'
     modules:
-      - anaconda/2021-01-tf2
       - anaconda/2021-03-tf2
     requirements:
       mem: 8G
@@ -20,8 +19,16 @@ tests:
     script: 'mpi/hello-world/run_hello-world.sh'
     modules:
       - openmpi/4.0.5
+     # - intel-parallel-studio/cluster.2020.0-intelmpi
     requirements:
       mem: 2G
       time: 00:15:00
       ntasks-per-node: 2
       nodes: '2-2'
+  slurm_hostname:
+    script: 'slurm/hostname/run_hostname.sh'
+    modules:
+      - gcc/8.4.0
+    requirements:
+      mem: 1G
+      time: 00:15:00

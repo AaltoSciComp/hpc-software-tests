@@ -17,13 +17,9 @@ fi
 
 if [[ $SLURM_PROCID -eq 0 ]]; then
 
-    if [[ ! -f $MPICC ]] ; then
-        echo "MPI compiler does not exist!"
-        exit 1
-    fi
-
-    srun $MPICC -o $EXECUTABLE hello-world.c
-
-    srun $EXECUTABLE | grep 'Hello world launched with '$SLURM_NTASKS' processors.'
+    mpicc -o $EXECUTABLE hello-world.c
 
 fi
+
+srun $EXECUTABLE | grep 'Hello world launched with '$SLURM_NTASKS' processors.'
+
