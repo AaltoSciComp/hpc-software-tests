@@ -4,8 +4,10 @@
 
 set -e
 
+
 if [[ "$#" -eq 1 ]]; then
     echo "Loading module: "$1
+    module purge
     module load $1
     module list
 fi
