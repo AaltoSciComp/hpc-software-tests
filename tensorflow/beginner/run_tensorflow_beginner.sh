@@ -4,7 +4,6 @@
 
 set -e
 
-
 if [[ "$#" -eq 1 ]]; then
     echo "Loading module: "$1
     module purge
@@ -12,18 +11,17 @@ if [[ "$#" -eq 1 ]]; then
     module list
 fi
 
-if [ ! -e tensorflow-tutorial-beginner.ipynb ] ; then
+EXAMPLE_NOTEBOOK=tensorflow-tutorial-beginner.ipynb
+EXAMPLE_SCRIPT=${EXAMPLE_NOTEBOOK/.ipynb/.py}
 
+if [ ! -e $EXAMPLE_NOTEBOOK ] ; then
     echo 'Downloading tensorflow beginner tutorial notebook ...'
-    curl -L -o tensorflow-tutorial-beginner.ipynb https://github.com/tensorflow/docs/raw/master/site/en/tutorials/quickstart/beginner.ipynb 
-
+    curl -L -o $EXAMPLE_NOTEBOOK https://github.com/tensorflow/docs/raw/master/site/en/tutorials/quickstart/beginner.ipynb 
 fi
 
-if [ ! -e tensorflow-tutorial-beginner.py ] ; then
-
+if [ ! -e $EXAMPLE_SCRIPT ] ; then
     echo 'Converting tensorflow beginner tutorial notebook to a python code file ...'
-    ipython nbconvert tensorflow-tutorial-beginner.ipynb --to script --stdout > tensorflow-tutorial-beginner.py
-
+    ipython nbconvert $EXAMPLE_NOTEBOOK --to script --stdout > $EXAMPLE_SCRIPT
 fi
 
-python tensorflow-tutorial-beginner.py
+python $EXAMPLE_SCRIPT

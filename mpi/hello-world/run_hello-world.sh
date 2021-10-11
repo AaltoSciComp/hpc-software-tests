@@ -1,19 +1,20 @@
 #!/bin/bash -l
-#SBATCH --time=00:05:00
+#SBATCH --mem=1G
 #SBATCH --ntasks-per-node=2
 #SBATCH --nodes=2-2
+#SBATCH --time=00:05:00
 
 set -e
 
-if [[ "$#" -eq 1 ]]; then
+if [[ "$#" -gt 1 ]]; then
+    MODULES=${@:1}
     echo "Running on: "$(hostname)
-    echo "Loading module: "$1
+    echo "Loading modules: "$MODULES
     module purge
-    module load $1
-    EXECUTABLE=hello-world_${1//\//_}
-else
-    EXECUTABLE=hello-world
+    module load $MODULES
 fi
+
+EXECUTABLE=hello-world
 
 if [[ $SLURM_PROCID -eq 0 ]]; then
 

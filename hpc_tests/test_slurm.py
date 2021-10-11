@@ -27,7 +27,12 @@ def sbatch_skip():
     # Fixture for the sbatch requirements
     return None
 
-def test_sbatch(sbatch_script, sbatch_module, sbatch_requirements, sbatch_skip):
+@pytest.fixture
+def sbatch_extra_modules():
+    # Fixture for the sbatch extra modules
+    return None
+
+def test_sbatch(sbatch_script, sbatch_module, sbatch_requirements, sbatch_skip, sbatch_extra_modules):
 
     # Fail if any of the arguments is missing
     assert sbatch_script is not None
@@ -52,6 +57,9 @@ def test_sbatch(sbatch_script, sbatch_module, sbatch_requirements, sbatch_skip):
     for key, value in sbatch_requirements.items():
         args.append('--%s=%s' % (key,value))
     args.extend([script_name, sbatch_module])
+
+    if sbatch_extra_modules is not None:
+        args.extend(sbatch_extra_modules)
 
     print('Running command: "sbatch %s"' % (' '.join(args)))
 

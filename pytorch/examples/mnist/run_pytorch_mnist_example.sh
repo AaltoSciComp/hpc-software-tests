@@ -2,10 +2,14 @@
 #SBATCH --mem=6G
 #SBATCH --time=00:15:00
 
-if [[ "$#" -eq 1 ]]; then
-    echo "Loading module: "$1
-    module load $1
-    module list
+set -e
+
+if [[ "$#" -gt 1 ]]; then
+    MODULES=${@:1}
+    echo "Running on: "$(hostname)
+    echo "Loading modules: "$MODULES
+    module purge
+    module load $MODULES
 fi
 
 curl -L -o pytorch-example-mnist.py https://github.com/pytorch/examples/raw/master/mnist/main.py 

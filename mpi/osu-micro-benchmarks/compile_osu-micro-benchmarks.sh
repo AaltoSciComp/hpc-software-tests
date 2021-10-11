@@ -6,7 +6,7 @@ if [[ $# -lt 3 ]]; then
     cat << EOF
     usage:
 
-        $0 mpi-flavor/mpi-version MPICC MPICXX
+        $0 MPICC MPICXX MODULE [ MODULE ... ]
 
 EOF
     exit 1
@@ -14,9 +14,9 @@ fi
 
 SCRIPTDIR=`readlink -f $(dirname $0)`
 
-MPI_NAME=$1
-MPICC=$2
-MPICXX=$3
+MPICC=$1
+MPICXX=$2
+MPI_NAME=$3
 
 NSLASHES=$(echo $MPI_NAME | tr -cd '/' | wc -c)
 
