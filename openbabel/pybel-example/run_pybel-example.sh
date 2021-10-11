@@ -4,7 +4,7 @@
 
 set -e
 
-if [[ "$#" -gt 1 ]]; then
+if [[ "$#" -gt 0 ]]; then
     MODULES=${@:1}
     echo "Running on: "$(hostname)
     echo "Loading modules: "$MODULES
@@ -14,7 +14,7 @@ fi
 
 rm -f test.png
 
-srun python3 pybel-example.py
+srun python pybel-example.py
 
 if [[ -f test.png ]]; then
     echo 'Openbabel example ran successfully!'

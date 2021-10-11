@@ -41,8 +41,8 @@ tests:
     requirements:
       mem: 1G
       time: 00:15:00
-  openbabel_pybel-example:
-    script: 'openbabel/pybel-example/run_pybel-example.sh'
+  openfoam_dambreak-example:
+    script: 'openfoam/dambreak-example/run_dambreak-example.sh'
     modules:
       - openfoam/1906-openmpi-metis
       - openfoam-org/9-openmpi-metis

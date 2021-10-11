@@ -4,7 +4,7 @@
 
 set -e
 
-if [[ "$#" -gt 1 ]]; then
+if [[ "$#" -gt 0 ]]; then
     MODULES=${@:1}
     echo "Running on: "$(hostname)
     echo "Loading modules: "$MODULES
