@@ -3,6 +3,15 @@ tests:
     script: 'tensorflow/beginner/run_tensorflow_beginner.sh'
     modules:
       - anaconda/2021-03-tf2
+      - tensorflow/2.6.0
+    requirements:
+      mem: 8G
+      time: 00:15:00
+      gres: gpu:1
+  pytorch_mnist-example:
+    script: 'pytorch/mnist-example/run_pytorch_mnist-example.sh'
+    modules:
+      - anaconda/2021-03-tf2
     requirements:
       mem: 8G
       time: 00:15:00

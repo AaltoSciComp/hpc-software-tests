@@ -1,3 +1,4 @@
+import os
 import pytest
 from yaml import load
 try:
@@ -5,10 +6,19 @@ try:
 except ImportError:
     from yaml import Loader
 
+SCRIPT_PATH =  os.path.dirname(os.path.realpath(__file__))
 
 def pytest_addoption(parser):
-    parser.addoption("--conf", action="store", default="aalto.yaml", help="Configuration file to use")
-    parser.addoption("--tests", action="store", default=None, help="Tests to run")
+    parser.addoption(
+        "--conf",
+        action="store",
+        default=os.path.join(SCRIPT_PATH,"aalto.yaml"),
+        help="Configuration file to use")
+    parser.addoption(
+        "--tests",
+        action="store",
+        default=None,
+        help="Tests to run")
 
 
 def pytest_generate_tests(metafunc):
