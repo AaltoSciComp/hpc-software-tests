@@ -56,6 +56,8 @@ def pytest_generate_tests(metafunc):
                 sbatch_skip = True
             # Determine extra modules
             sbatch_extra_modules = test_conf.get("extra_modules", None)
+            # Determine extra environment variables
+            sbatch_environment = test_conf.get('environment', None)
 
             # Create parameters for each module we want to test
             parameters.extend([
@@ -63,11 +65,18 @@ def pytest_generate_tests(metafunc):
                  module_name,
                  sbatch_requirements,
                  sbatch_skip,
-                 sbatch_extra_modules) for module_name in test_conf["modules"]
+                 sbatch_extra_modules,
+                 sbatch_environment) for module_name in test_conf["modules"]
             ])
             # Create id for each test
             ids.extend([
             '{0}-{1}'.format(test_name, module_name.replace('/', '_')) for module_name in test_conf["modules"]
             ])
         # Set test parameters and name
-        metafunc.parametrize("sbatch_script,sbatch_module,sbatch_requirements,sbatch_skip,sbatch_extra_modules", parameters, ids=ids)
+        metafunc.parametrize((
+            "sbatch_script,"
+            "sbatch_module,"
+            "sbatch_requirements,"
+            "sbatch_skip,"
+            "sbatch_extra_modules,"
+            "sbatch_environment"), parameters, ids=ids)

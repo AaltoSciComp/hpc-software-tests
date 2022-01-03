@@ -1,7 +1,5 @@
 #!/bin/bash -l
-#SBATCH --mem=1G
-#SBATCH --ntasks-per-node=2
-#SBATCH --nodes=2-2
+#SBATCH --mem=100M
 #SBATCH --time=00:05:00
 
 set -e
@@ -16,10 +14,14 @@ fi
 
 EXECUTABLE=hello-world
 
-if [[ $SLURM_PROCID -eq 0 ]]; then
-
-    mpicc -o $EXECUTABLE hello-world.c
-
+if [[ -z "$COMPILER" ]]; then
+    COMPILER=$(command -v icc || command -v gcc)
 fi
 
-srun $EXECUTABLE | grep 'Hello world launched with '$SLURM_NTASKS' processors.'
+echo $LC_ALL
+echo $LANG
+
+echo 'Compiling with '$COMPILER
+$COMPILER -o $EXECUTABLE hello-world.c
+
+srun $EXECUTABLE | grep 'Hello world.'

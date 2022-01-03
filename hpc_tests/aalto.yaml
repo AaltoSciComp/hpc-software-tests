@@ -3,15 +3,17 @@ tests:
     script: 'tensorflow/beginner/run_tensorflow_beginner.sh'
     modules:
       - anaconda/2021-03-tf2
-      - tensorflow/2.6.0
+      - anaconda/2021-04-tf2
     requirements:
       mem: 8G
       time: 00:15:00
       gres: gpu:1
+      constraint: "[volta|ampere]"
   pytorch_mnist-example:
     script: 'pytorch/mnist-example/run_pytorch_mnist-example.sh'
     modules:
       - anaconda/2021-03-tf2
+      - anaconda/2021-04-tf2
     requirements:
       mem: 8G
       time: 00:15:00
@@ -20,10 +22,33 @@ tests:
     script: 'numpy/blas-benchmark/run_blas-benchmark.sh'
     modules:
       - anaconda/2021-03-tf2
+      - anaconda/2021-04-tf2
     requirements:
       mem: 8G
       time: 00:15:00
       cpus-per-task: 4
+  gcc_hello-world:
+    script: 'c/hello-world/run_hello-world.sh'
+    modules:
+      - gcc/8.4.0
+      - gcc/9.3.0
+      - gcc/11.2.0
+    requirements:
+      mem: 1G
+      time: 00:15:00
+  icc_hello-world:
+    script: 'c/hello-world/run_hello-world.sh'
+    modules:
+      - intel-oneapi-compilers/2021.2.0
+    requirements:
+      mem: 1G
+      time: 00:15:00
+    extra_modules:
+      - triton-dev/spack
+      - gcc/8.4.0
+    environment:
+      LC_ALL: 'C'
+      LANG: 'C'
   mpi_hello-world:
     script: 'mpi/hello-world/run_hello-world.sh'
     modules:
@@ -53,7 +78,7 @@ tests:
   openfoam_dambreak-example:
     script: 'openfoam/dambreak-example/run_dambreak-example.sh'
     modules:
-      - openfoam/1906-openmpi-metis
+     # - openfoam/1906-openmpi-metis
       - openfoam-org/9-openmpi-metis
     requirements:
       ntasks: 4

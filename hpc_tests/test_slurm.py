@@ -24,7 +24,12 @@ def sbatch_requirements():
 
 @pytest.fixture
 def sbatch_skip():
-    # Fixture for the sbatch requirements
+    # Fixture for the sbatch skip
+    return None
+
+@pytest.fixture
+def sbatch_environment():
+    # Fixture for the sbatch environment variables
     return None
 
 @pytest.fixture
@@ -32,12 +37,17 @@ def sbatch_extra_modules():
     # Fixture for the sbatch extra modules
     return None
 
-def test_sbatch(sbatch_script, sbatch_module, sbatch_requirements, sbatch_skip, sbatch_extra_modules):
+def test_sbatch(sbatch_script,
+                sbatch_module,
+                sbatch_requirements,
+                sbatch_skip,
+                sbatch_extra_modules,
+                sbatch_environment):
 
     # Fail if any of the arguments is missing
     assert sbatch_script is not None
-    assert sbatch_module is not None
     assert sbatch_requirements is not None
+    assert sbatch_module is not None
     assert sbatch_skip is not None
 
     # Get path to this file
@@ -56,17 +66,23 @@ def test_sbatch(sbatch_script, sbatch_module, sbatch_requirements, sbatch_skip, 
     args = ['--wait', '--output=%j.out', '--parsable']
     for key, value in sbatch_requirements.items():
         args.append('--%s=%s' % (key,value))
-    args.extend([script_name, sbatch_module])
 
+    args.append(script_name)
     if sbatch_extra_modules is not None:
         args.extend(sbatch_extra_modules)
+    args.append(sbatch_module)
 
     print('Running command: "sbatch %s"' % (' '.join(args)))
+
+    env = os.environ.copy()
+
+    if sbatch_environment is not None:
+        env.update(sbatch_environment)
 
     if not sbatch_skip:
         # Run script through Slurm, check that exit code is 0
         try:
-            sbatch_output = sbatch(*args, _cwd=script_folder)
+            sbatch_output = sbatch(*args, _cwd=script_folder, _env=env)
         except ErrorReturnCode as error:
             print('Error encountered during script run!')
             sbatch_output = error
