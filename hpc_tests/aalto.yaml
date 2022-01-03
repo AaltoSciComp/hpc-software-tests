@@ -49,6 +49,28 @@ tests:
     environment:
       LC_ALL: 'C'
       LANG: 'C'
+  gfortran_hello-world:
+    script: 'fortran/hello-world/run_hello-world.sh'
+    modules:
+      - gcc/8.4.0
+      - gcc/9.3.0
+      - gcc/11.2.0
+    requirements:
+      mem: 1G
+      time: 00:15:00
+  ifort_hello-world:
+    script: 'fortran/hello-world/run_hello-world.sh'
+    modules:
+      - intel-oneapi-compilers/2021.2.0
+    requirements:
+      mem: 1G
+      time: 00:15:00
+    extra_modules:
+      - triton-dev/spack
+      - gcc/8.4.0
+    environment:
+      LC_ALL: 'C'
+      LANG: 'C'
   mpi_hello-world:
     script: 'mpi/hello-world/run_hello-world.sh'
     modules:
