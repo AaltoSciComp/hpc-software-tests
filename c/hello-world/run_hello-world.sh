@@ -18,9 +18,6 @@ if [[ -z "$COMPILER" ]]; then
     COMPILER=$(command -v icc || command -v gcc)
 fi
 
-echo $LC_ALL
-echo $LANG
-
 echo 'Compiling with '$COMPILER
 $COMPILER -o $EXECUTABLE hello-world.c
 
