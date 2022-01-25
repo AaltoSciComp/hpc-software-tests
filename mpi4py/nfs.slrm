@@ -1,0 +1,16 @@
+#!/bin/bash
+
+#SBATCH --nodes=15
+#SBATCH --tasks-per-node=3
+#SBATCH --cpus-per-task=1
+#SBATCH --time=0:05:00
+
+
+
+echo Using nodes: $SLURM_NODELIST
+
+
+module load anaconda/2021-03-tf2
+
+mpirun python barrier.py
+
