@@ -40,6 +40,7 @@ tests:
     script: 'c/hello-world/run_hello-world.sh'
     modules:
       - intel-oneapi-compilers/2021.2.0
+      - intel-oneapi-compilers/2021.3.0
     requirements:
       mem: 1G
       time: 00:15:00
