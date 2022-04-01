@@ -16,10 +16,14 @@ fi
 
 EXECUTABLE=hello-world
 
+rm $EXECUTABLE
+
 if [[ $SLURM_PROCID -eq 0 ]]; then
 
+    echo 'Compiling '$EXECUTABLE' with '$(which mpicc)
     mpicc -o $EXECUTABLE hello-world.c
-
+else
+    sleep 5
 fi
 
 srun $EXECUTABLE | grep 'Hello world launched with '$SLURM_NTASKS' processors.'
