@@ -76,7 +76,7 @@ tests:
     script: 'mpi/hello-world/run_hello-world.sh'
     modules:
       - openmpi/4.0.5
-     # - intel-parallel-studio/cluster.2020.0-intelmpi
+      - intel-parallel-studio/cluster.2020.0-intelmpi
     extra_modules:
       - gcc/8.4.0
     requirements:

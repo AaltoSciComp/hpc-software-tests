@@ -6,7 +6,7 @@ tests:
       - anaconda/2021-04-tf2
       - anaconda/2022-01
     extra_modules:
-      - triton-dev/spack
+      - triton-dev/anaconda
     requirements:
       mem: 8G
       time: 00:15:00
@@ -19,7 +19,7 @@ tests:
       - anaconda/2021-04-tf2
       - anaconda/2022-01
     extra_modules:
-      - triton-dev/spack
+      - triton-dev/anaconda
     requirements:
       mem: 8G
       time: 00:15:00
@@ -30,7 +30,7 @@ tests:
       - anaconda/2021-03-tf2
       - anaconda/2021-04-tf2
     extra_modules:
-      - triton-dev/spack
+      - triton-dev/anaconda
     requirements:
       mem: 8G
       time: 00:15:00
