@@ -10,7 +10,7 @@ if [[ $# -lt 1 ]]; then
     cat << EOF
     usage:
 
-        sbatch $(basename $0) mpi-flavor/mpi-version
+        sbatch $(basename $0) mpi-flavor/mpi-version MODULE
 
 EOF
     exit 1

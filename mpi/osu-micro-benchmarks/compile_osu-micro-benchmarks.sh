@@ -32,7 +32,7 @@ module list
 
 BUILDDIR=$SCRIPTDIR/build/$MPI_NAME
 INSTALLDIR=$SCRIPTDIR/bin/$MPI_NAME
-BENCHMARK=osu-micro-benchmarks-5.7
+BENCHMARK=osu-micro-benchmarks-5.9
 
 if [ ! -f "${BENCHMARK}.tar.gz" ]; then
     wget http://mvapich.cse.ohio-state.edu/download/mvapich/${BENCHMARK}.tar.gz
