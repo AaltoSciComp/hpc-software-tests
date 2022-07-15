@@ -38,6 +38,9 @@ def pytest_generate_tests(metafunc):
     # Split tests-argument
     test_categories = tests.split(',')
 
+    # Read global section
+    sbatch_global_requirements = conf.get('global', {}).get('requirements', {})
+
     if "sbatch_script" in metafunc.fixturenames:
         parameters = []
         ids = []
@@ -49,7 +52,8 @@ def pytest_generate_tests(metafunc):
             # Determine script
             sbatch_script = test_conf["script"]
             # Determine Slurm requirements
-            sbatch_requirements = test_conf["requirements"]
+            sbatch_requirements = sbatch_global_requirements.copy()
+            sbatch_requirements.update(test_conf["requirements"])
             # Determine whether test should be skipped
             sbatch_skip = test_conf.get("skip", False)
             if test_category not in test_categories and not run_all:
