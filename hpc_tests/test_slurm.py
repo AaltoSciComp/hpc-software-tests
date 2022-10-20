@@ -33,6 +33,11 @@ def sbatch_environment():
     return None
 
 @pytest.fixture
+def sbatch_extra_args():
+    # Fixture for the sbatch extra args
+    return None
+
+@pytest.fixture
 def sbatch_extra_modules():
     # Fixture for the sbatch extra modules
     return None
@@ -42,6 +47,7 @@ def test_sbatch(sbatch_script,
                 sbatch_requirements,
                 sbatch_skip,
                 sbatch_extra_modules,
+                sbatch_extra_args,
                 sbatch_environment):
 
     # Fail if any of the arguments is missing
@@ -66,6 +72,10 @@ def test_sbatch(sbatch_script,
     args = ['--wait', '--output=%j.out', '--parsable']
     for key, value in sbatch_requirements.items():
         args.append('--%s=%s' % (key,value))
+
+    if sbatch_extra_args:
+        extra_args = sbatch_extra_args.split(' ')
+        args.extend(extra_args)
 
     args.append(script_name)
     if sbatch_extra_modules is not None:

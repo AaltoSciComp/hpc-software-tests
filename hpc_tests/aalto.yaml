@@ -4,25 +4,35 @@ tests:
     modules:
       - anaconda/2021-03-tf2
       - anaconda/2021-04-tf2
+      - anaconda/2022-01
+      - anaconda/2022-02
+      - anaconda/2022-03
     requirements:
       mem: 8G
       time: 00:15:00
       gres: gpu:1
-      constraint: "[volta|ampere]"
+      constraint: "[volta|ampere|pascal]"
   pytorch_mnist-example:
     script: 'pytorch/mnist-example/run_pytorch_mnist-example.sh'
     modules:
       - anaconda/2021-03-tf2
       - anaconda/2021-04-tf2
+      - anaconda/2022-01
+      - anaconda/2022-02
+      - anaconda/2022-03
     requirements:
       mem: 8G
       time: 00:15:00
       gres: gpu:1
+      constraint: "[volta|ampere|pascal]"
   numpy_blas-benchmark:
     script: 'numpy/blas-benchmark/run_blas-benchmark.sh'
     modules:
       - anaconda/2021-03-tf2
       - anaconda/2021-04-tf2
+      - anaconda/2022-01
+      - anaconda/2022-02
+      - anaconda/2022-03
     requirements:
       mem: 8G
       time: 00:15:00

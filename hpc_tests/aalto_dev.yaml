@@ -5,30 +5,38 @@ tests:
       - anaconda/2021-03-tf2
       - anaconda/2021-04-tf2
       - anaconda/2022-01
+      - anaconda/2022-02
+      - anaconda/2022-03
     extra_modules:
       - triton-dev/anaconda
     requirements:
       mem: 8G
       time: 00:15:00
       gres: gpu:1
-      constraint: "[volta|ampere]"
+      constraint: "[volta|ampere|pascal]"
   pytorch_mnist-example:
     script: 'pytorch/mnist-example/run_pytorch_mnist-example.sh'
     modules:
       - anaconda/2021-03-tf2
       - anaconda/2021-04-tf2
       - anaconda/2022-01
+      - anaconda/2022-02
+      - anaconda/2022-03
     extra_modules:
       - triton-dev/anaconda
     requirements:
       mem: 8G
       time: 00:15:00
       gres: gpu:1
+      constraint: "[volta|ampere|pascal]"
   numpy_blas-benchmark:
     script: 'numpy/blas-benchmark/run_blas-benchmark.sh'
     modules:
       - anaconda/2021-03-tf2
       - anaconda/2021-04-tf2
+      - anaconda/2022-01
+      - anaconda/2022-02
+      - anaconda/2022-03
     extra_modules:
       - triton-dev/anaconda
     requirements:
@@ -49,7 +57,9 @@ tests:
   icc_hello-world:
     script: 'c/hello-world/run_hello-world.sh'
     modules:
+      - intel-oneapi-compilers/2021.2.0
       - intel-oneapi-compilers/2021.3.0
+      - intel-oneapi-compilers/2021.4.0
     requirements:
       mem: 1G
       time: 00:15:00
@@ -74,6 +84,8 @@ tests:
     script: 'fortran/hello-world/run_hello-world.sh'
     modules:
       - intel-oneapi-compilers/2021.2.0
+      - intel-oneapi-compilers/2021.3.0
+      - intel-oneapi-compilers/2021.4.0
     requirements:
       mem: 1G
       time: 00:15:00
@@ -113,13 +125,14 @@ tests:
     script: 'blas/simple-c/run_simple-c.sh'
     modules:
       - intel-oneapi-mkl/2021.3.0
+      - intel-oneapi-mkl/2021.4.0
     requirements:
       mem: 1G
       time: 00:15:00
     extra_modules:
       - triton-dev/spack
       - gcc/8.4.0
-      - intel-oneapi-compilers/2021.3.0
+      #- intel-oneapi-compilers/2021.3.0
     environment:
       BLAS_FLAGS: '-lmkl_intel_lp64 -lmkl_sequential -lmkl_core -lpthread -lm -DUSE_MKL'
       LC_ALL: 'C'
@@ -128,7 +141,6 @@ tests:
     script: 'mpi/hello-world/run_hello-world.sh'
     modules:
       - openmpi/4.0.5
-      - intel-parallel-studio/cluster.2020.0-intelmpi
     extra_modules:
       - triton-dev/spack
       - gcc/8.4.0
@@ -136,7 +148,23 @@ tests:
       mem: 2G
       time: 00:15:00
       ntasks-per-node: 2
+  mpi_hello-world-intel:
+    script: 'mpi/hello-world/run_hello-world.sh'
+    modules:
+      - openmpi/4.0.5
+    extra_modules:
+      - triton-dev/spack
+      - gcc/8.4.0
+      - intel-oneapi-compilers/2021.4.0
+    requirements:
+      mem: 2G
+      time: 00:15:00
+      ntasks-per-node: 2
       nodes: '2-2'
+      nodes: '2-2'
+    environment:
+      OMPI_MPICC: 'icc'
+      OMPI_MPIF90: 'ifort'
   slurm_hostname:
     script: 'slurm/hostname/run_hostname.sh'
     modules:
