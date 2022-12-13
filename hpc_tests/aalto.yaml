@@ -37,6 +37,23 @@ tests:
       mem: 8G
       time: 00:15:00
       cpus-per-task: 4
+  gurobi_introduction-to-modeling:
+    script: 'gurobi/introduction-to-modeling/run_gurobi_introduction-to-modeling.sh'
+    modules:
+      - anaconda/2022-03
+    requirements:
+      mem: 8G
+      time: 00:15:00
+  gurobi_c-examples:
+    script: 'gurobi/c-examples/run_gurobi_c-examples.sh'
+    modules:
+      - gurobi/9.1.2
+      - gurobi/9.5.2
+    extra_modules:
+      - gcc/8.4.0
+    requirements:
+      mem: 8G
+      time: 00:15:00
   gcc_hello-world:
     script: 'c/hello-world/run_hello-world.sh'
     modules:
