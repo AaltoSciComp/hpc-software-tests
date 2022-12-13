@@ -141,6 +141,7 @@ tests:
     script: 'mpi/hello-world/run_hello-world.sh'
     modules:
       - openmpi/4.0.5
+      - mpich/3.4.2
     extra_modules:
       - triton-dev/spack
       - gcc/8.4.0
@@ -152,6 +153,7 @@ tests:
     script: 'mpi/hello-world/run_hello-world.sh'
     modules:
       - openmpi/4.0.5
+      - mpich/3.4.2
     extra_modules:
       - triton-dev/spack
       - gcc/8.4.0
@@ -165,6 +167,8 @@ tests:
     environment:
       OMPI_MPICC: 'icc'
       OMPI_MPIF90: 'ifort'
+      MPICH_CC: 'icc'
+      MPICH_FC: 'ifort'
   slurm_hostname:
     script: 'slurm/hostname/run_hostname.sh'
     modules:
