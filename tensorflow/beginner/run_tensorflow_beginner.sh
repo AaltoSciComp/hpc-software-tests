@@ -25,4 +25,4 @@ if [ ! -e $EXAMPLE_SCRIPT ] ; then
     ipython nbconvert $EXAMPLE_NOTEBOOK --to script --stdout > $EXAMPLE_SCRIPT
 fi
 
-python -u $EXAMPLE_SCRIPT
+srun python -u $EXAMPLE_SCRIPT
