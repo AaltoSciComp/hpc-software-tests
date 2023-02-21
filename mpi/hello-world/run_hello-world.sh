@@ -16,7 +16,7 @@ fi
 
 EXECUTABLE=hello-world
 
-rm $EXECUTABLE
+rm -f $EXECUTABLE
 
 if [[ $SLURM_PROCID -eq 0 ]]; then
 
