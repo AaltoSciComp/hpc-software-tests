@@ -199,3 +199,12 @@ tests:
     requirements:
       mem: 4G
       time: 00:15:00
+  orca_water-example:
+    script: 'orca/water-example/run_water-example.sh'
+    modules:
+      - orca/4.2.1-openmpi
+    requirements:
+      mem: 4G
+      time: 00:15:00
+      ntasks-per-node: 4
+      nodes: 1
