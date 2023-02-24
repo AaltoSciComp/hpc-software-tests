@@ -7,6 +7,7 @@ tests:
       - anaconda/2022-01
       - anaconda/2022-02
       - anaconda/2022-03
+      - anaconda/2023-01
     extra_modules:
       - triton-dev/anaconda
     requirements:
@@ -22,6 +23,7 @@ tests:
       - anaconda/2022-01
       - anaconda/2022-02
       - anaconda/2022-03
+      - anaconda/2023-01
     extra_modules:
       - triton-dev/anaconda
     requirements:
@@ -37,6 +39,7 @@ tests:
       - anaconda/2022-01
       - anaconda/2022-02
       - anaconda/2022-03
+      - anaconda/2023-01
     extra_modules:
       - triton-dev/anaconda
     requirements:
@@ -47,6 +50,7 @@ tests:
     script: 'gurobi/introduction-to-modeling/run_gurobi_introduction-to-modeling.sh'
     modules:
       - anaconda/2022-03
+      - anaconda/2023-01
     extra_modules:
       - triton-dev/anaconda
     requirements:
@@ -58,7 +62,7 @@ tests:
       - gurobi/9.1.2
       - gurobi/9.5.2
     extra_modules:
-      - triton-dev/anaconda
+      - triton-dev/spack
       - gcc/8.4.0
     requirements:
       mem: 8G
