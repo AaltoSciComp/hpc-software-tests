@@ -5,7 +5,10 @@ import pytest
 
 with warnings.catch_warnings():
     warnings.filterwarnings("ignore",category=DeprecationWarning)
-    from sh import sbatch, ErrorReturnCode
+    import sh
+    from packaging.version import Version
+    if Version(sh.__version__) >= Version('2.0.0'):
+        sh = sh.bake(_return_cmd=True)
 
 @pytest.fixture
 def sbatch_script():
@@ -92,11 +95,13 @@ def test_sbatch(sbatch_script,
     if not sbatch_skip:
         # Run script through Slurm, check that exit code is 0
         try:
-            sbatch_output = sbatch(*args, _cwd=script_folder, _env=env)
-        except ErrorReturnCode as error:
+            with warnings.catch_warnings():
+                warnings.filterwarnings("ignore",category=DeprecationWarning)
+                sbatch_output = sh.sbatch(*args, _cwd=script_folder, _env=env)
+        except sh.ErrorReturnCode as error:
             print('Error encountered during script run!')
             sbatch_output = error
-        
+
         assert sbatch_output.exit_code == 0, \
             "Exit code was not zero'"
 
