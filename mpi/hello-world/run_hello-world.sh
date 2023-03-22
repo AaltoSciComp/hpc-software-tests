@@ -26,4 +26,15 @@ else
     sleep 5
 fi
 
-srun $EXECUTABLE | grep 'Hello world launched with '$SLURM_NTASKS' processors.'
+if [[ $(command -v srun) ]]; then
+    echo 'Launching with srun'
+    srun $EXECUTABLE | grep 'Hello world launched with '$SLURM_NTASKS' processors.'
+    exit $?
+elif [[ $(command -v mpirun) ]]; then
+    echo 'Launching with mpirun'
+    mpirun -np 4 $EXECUTABLE | grep 'Hello world launched with 4 processors.'
+    exit $?
+else
+    echo 'Could not find srun/mpirun to run the example!'
+    exit 1
+fi

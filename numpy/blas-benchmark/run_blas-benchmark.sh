@@ -17,7 +17,7 @@ export OMP_NUM_THREADS="${SLURM_CPUS_PER_TASK:-1}"
 echo "Running with "$OMP_NUM_THREADS" threads"
 
 time1=$(date +%s)
-srun python -u blas-benchmark.py
+python -u blas-benchmark.py
 time2=$(date +%s)
 
 time_taken=$(($time2 - $time1))

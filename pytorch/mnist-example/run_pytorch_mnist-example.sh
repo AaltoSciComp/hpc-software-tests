@@ -16,4 +16,4 @@ EXAMPLE_SCRIPT=pytorch_mnist-example.py
 
 curl -L -o $EXAMPLE_SCRIPT https://raw.githubusercontent.com/pytorch/examples/main/mnist/main.py
 
-srun python -u $EXAMPLE_SCRIPT --epochs 5
+python -u $EXAMPLE_SCRIPT --epochs 5

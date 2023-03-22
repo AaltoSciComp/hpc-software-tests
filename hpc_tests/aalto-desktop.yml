@@ -1,0 +1,120 @@
+global:
+  localrun: True
+tests:
+  tensorflow_beginner:
+    script: 'tensorflow/beginner/run_tensorflow_beginner.sh'
+    modules:
+      - anaconda/2023-01
+    extra_modules:
+      - scicomp-dev/anaconda
+  pytorch_mnist-example:
+    script: 'pytorch/mnist-example/run_pytorch_mnist-example.sh'
+    modules:
+      - anaconda/2023-01
+    extra_modules:
+      - scicomp-dev/anaconda
+  numpy_blas-benchmark:
+    script: 'numpy/blas-benchmark/run_blas-benchmark.sh'
+    modules:
+      - anaconda/2023-01
+    extra_modules:
+      - scicomp-dev/anaconda
+  gurobi_introduction-to-modeling:
+    script: 'gurobi/introduction-to-modeling/run_gurobi_introduction-to-modeling.sh'
+    modules:
+      - anaconda/2023-01
+    extra_modules:
+      - scicomp-dev/anaconda
+  gurobi_c-examples:
+    script: 'gurobi/c-examples/run_gurobi_c-examples.sh'
+    modules:
+      - gurobi/9.1.2-python3
+      - gurobi/9.5.2-python3
+    extra_modules:
+      - gcc/8.4.0
+  gcc_hello-world:
+    script: 'c/hello-world/run_hello-world.sh'
+    modules:
+      - gcc/8.4.0
+  icc_hello-world:
+    script: 'c/hello-world/run_hello-world.sh'
+    modules:
+      - intel-oneapi-compilers/2021.2.0
+      - intel-oneapi-compilers/2021.3.0
+      - intel-oneapi-compilers/2021.4.0
+    extra_modules:
+      - gcc/8.4.0
+    environment:
+      LC_ALL: 'C'
+      LANG: 'C'
+  gfortran_hello-world:
+    script: 'fortran/hello-world/run_hello-world.sh'
+    modules:
+      - gcc/8.4.0
+  ifort_hello-world:
+    script: 'fortran/hello-world/run_hello-world.sh'
+    modules:
+      - intel-oneapi-compilers/2021.2.0
+      - intel-oneapi-compilers/2021.3.0
+      - intel-oneapi-compilers/2021.4.0
+    extra_modules:
+      - gcc/8.4.0
+    environment:
+      LC_ALL: 'C'
+      LANG: 'C'
+  openblas_simple-c:
+    script: 'blas/simple-c/run_simple-c.sh'
+    modules:
+      - openblas/0.3.13-openmp
+    extra_modules:
+      - gcc/8.4.0
+    environment:
+      BLAS_FLAGS: '-lopenblas -lpthread -lm'
+  oneapi-mkl_simple-c:
+    script: 'blas/simple-c/run_simple-c.sh'
+    modules:
+      - intel-oneapi-mkl/2021.3.0
+      - intel-oneapi-mkl/2021.4.0
+    extra_modules:
+      - gcc/8.4.0
+    environment:
+      BLAS_FLAGS: '-lmkl_intel_lp64 -lmkl_sequential -lmkl_core -lpthread -lm -DUSE_MKL'
+      LC_ALL: 'C'
+      LANG: 'C'
+  mpi_hello-world-gcc:
+    script: 'mpi/hello-world/run_hello-world.sh'
+    modules:
+      - openmpi/4.0.5
+    extra_modules:
+      - gcc/8.4.0
+  mpi_hello-world-intel:
+    script: 'mpi/hello-world/run_hello-world.sh'
+    modules:
+      - openmpi/4.0.5
+    extra_modules:
+      - gcc/8.4.0
+      - intel-oneapi-compilers/2021.4.0
+    environment:
+      OMPI_MPICC: 'icc'
+      OMPI_MPIF90: 'ifort'
+      MPICH_CC: 'icc'
+      MPICH_FC: 'ifort'
+  openbabel_pybel-example:
+    script: 'openbabel/pybel-example/run_pybel-example.sh'
+    modules:
+      - openbabel/3.1.1-python3
+  openfoam_dambreak-example:
+    script: 'openfoam/dambreak-example/run_dambreak-example.sh'
+    modules:
+     # - openfoam/1906-openmpi-metis
+      - openfoam-org/9-openmpi-metis
+  suite-sparse_cholmod-simple:
+    script: 'suite-sparse/cholmod/run_suite-sparse_cholmod-simple.sh'
+    modules:
+      - suite-sparse/5.10.1
+    extra_modules:
+      - gcc/8.4.0
+  orca_water-example:
+    script: 'orca/water-example/run_water-example.sh'
+    modules:
+      - orca/4.2.1-openmpi

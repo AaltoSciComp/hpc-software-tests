@@ -22,7 +22,7 @@ fi
 
 if [ ! -e $EXAMPLE_SCRIPT ] ; then
     echo 'Converting tensorflow beginner tutorial notebook to a python code file ...'
-    ipython nbconvert $EXAMPLE_NOTEBOOK --to script --stdout > $EXAMPLE_SCRIPT
+    jupyter nbconvert $EXAMPLE_NOTEBOOK --to script --stdout > $EXAMPLE_SCRIPT
 fi
 
-srun python -u $EXAMPLE_SCRIPT
+python -u $EXAMPLE_SCRIPT

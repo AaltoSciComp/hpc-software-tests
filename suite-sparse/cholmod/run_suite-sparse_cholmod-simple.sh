@@ -28,7 +28,7 @@ if [ ! -e ${EXAMPLE_MATRIX} ] ; then
 fi
 
 echo 'Compiling cholmod_simple ...'
-gcc -lcholmod -lamd -lcolamd -lsuitesparseconfig -o $EXAMPLE_BIN $EXAMPLE_CODE
+gcc -lcholmod -lamd -lcolamd -lsuitesparseconfig -lopenblas -o $EXAMPLE_BIN $EXAMPLE_CODE
 
 echo 'Running cholmod_simple ...'
 ./$EXAMPLE_BIN < $EXAMPLE_MATRIX

@@ -14,7 +14,7 @@ fi
 
 rm -f test.png
 
-srun python pybel-example.py
+python pybel-example.py
 
 if [[ -f test.png ]]; then
     echo 'Openbabel example ran successfully!'

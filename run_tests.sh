@@ -65,5 +65,5 @@ fi
 OUTPUTFILE=aalto-$(date -Iminutes).out
 
 echo "Running tests with the following command:" |& tee $OUTPUTFILE
-echo "pytest -s -v --conf $CONF $KEYWORD_ARG $TEST_ARG" |& tee -a aalto-$(date -Iminutes).out
-pytest -s -v --conf $CONF $KEYWORD_ARG $TEST_ARG |& tee -a aalto-$(date -Iminutes).out
+echo "pytest --color=yes --tb=line -v -s --conf $CONF $KEYWORD_ARG $TEST_ARG" |& tee -a aalto-$(date -Iminutes).out
+pytest -s --color=yes --tb=line -v --conf $CONF $KEYWORD_ARG $TEST_ARG |& tee -a aalto-$(date -Iminutes).out

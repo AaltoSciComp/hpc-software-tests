@@ -24,7 +24,16 @@ cd damBreak
 blockMesh
 decomposePar
 
-srun interFoam -parallel | tee damBreak.out
+if [[ $(command -v srun) ]]; then
+    echo 'Launching with srun'
+    srun interFoam -parallel | tee damBreak.out
+elif [[ $(command -v mpirun) ]]; then
+    echo 'Launching with mpirun'
+    mpirun -np 4 interFoam -parallel | tee damBreak.out
+else
+    echo 'Could not find srun/mpirun to run the example!'
+    exit 1
+fi
 
 grep -q "Finalising parallel run" damBreak.out
 if [ $? -eq 0 ] ; then
@@ -33,4 +42,3 @@ else
     echo 'Did not run damBreak successfully'
     exit 1
 fi
-    

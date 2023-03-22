@@ -21,4 +21,4 @@ fi
 echo 'Compiling with '$COMPILER
 $COMPILER -o $EXECUTABLE hello-world.c
 
-srun $EXECUTABLE | grep 'Hello world.'
+./$EXECUTABLE | grep 'Hello world.'

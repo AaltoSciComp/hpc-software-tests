@@ -25,4 +25,4 @@ echo 'Compilation command:'
 echo $COMPILER -o $EXECUTABLE $CODE -Wl,-rpath,$LD_LIBRARY_PATH  $BLAS_FLAGS
 $COMPILER -o $EXECUTABLE $CODE -Wl,-rpath,$LD_LIBRARY_PATH  $BLAS_FLAGS
 
-srun $EXECUTABLE && echo $EXECUTABLE' ran successfully'
+./$EXECUTABLE && echo $EXECUTABLE' ran successfully'
