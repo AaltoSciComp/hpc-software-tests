@@ -8,6 +8,7 @@ tests:
       - anaconda/2022-02
       - anaconda/2022-03
       - anaconda/2023-01
+      - anaconda/2023-02
     requirements:
       mem: 8G
       time: 00:15:00
@@ -22,10 +23,20 @@ tests:
       - anaconda/2022-02
       - anaconda/2022-03
       - anaconda/2023-01
+      - anaconda/2023-02
     requirements:
       mem: 8G
       time: 00:15:00
       gres: gpu:1
+      constraint: "[volta|ampere|pascal]"
+  jax-example:
+    script: 'jax/example/run_jax_example.sh'
+    modules:
+      - anaconda/2023-02
+    requirements:
+      mem: 8G
+      time: 00:15:00
+      gres: gpu:2
       constraint: "[volta|ampere|pascal]"
   numpy_blas-benchmark:
     script: 'numpy/blas-benchmark/run_blas-benchmark.sh'
@@ -36,6 +47,7 @@ tests:
       - anaconda/2022-02
       - anaconda/2022-03
       - anaconda/2023-01
+      - anaconda/2023-02
     requirements:
       mem: 8G
       time: 00:15:00
@@ -45,6 +57,7 @@ tests:
     modules:
       - anaconda/2022-03
       - anaconda/2023-01
+      - anaconda/2023-02
     requirements:
       mem: 8G
       time: 00:15:00
