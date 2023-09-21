@@ -9,6 +9,7 @@ tests:
       - anaconda/2022-03
       - anaconda/2023-01
       - anaconda/2023-02
+      - anaconda/2023-03
     extra_modules:
       - triton-dev/anaconda
     requirements:
@@ -26,6 +27,7 @@ tests:
       - anaconda/2022-03
       - anaconda/2023-01
       - anaconda/2023-02
+      - anaconda/2023-03
     extra_modules:
       - triton-dev/anaconda
     requirements:
@@ -54,6 +56,7 @@ tests:
       - anaconda/2022-03
       - anaconda/2023-01
       - anaconda/2023-02
+      - anaconda/2023-03
     extra_modules:
       - triton-dev/anaconda
     requirements:
@@ -66,6 +69,7 @@ tests:
       - anaconda/2022-03
       - anaconda/2023-01
       - anaconda/2023-02
+      - anaconda/2023-03
     extra_modules:
       - triton-dev/anaconda
     requirements:
