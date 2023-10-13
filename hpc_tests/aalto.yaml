@@ -10,6 +10,7 @@ tests:
       - anaconda/2023-01
       - anaconda/2023-02
       - anaconda/2023-03
+      - anaconda/2023-04
     requirements:
       mem: 8G
       time: 00:15:00
@@ -26,6 +27,8 @@ tests:
       - anaconda/2023-01
       - anaconda/2023-02
       - anaconda/2023-03
+      - anaconda/2023-04
+      - neuroimaging/2023-03
     requirements:
       mem: 8G
       time: 00:15:00
@@ -51,6 +54,8 @@ tests:
       - anaconda/2023-01
       - anaconda/2023-02
       - anaconda/2023-03
+      - anaconda/2023-04
+      - neuroimaging/2023-03
     requirements:
       mem: 8G
       time: 00:15:00
@@ -62,6 +67,7 @@ tests:
       - anaconda/2023-01
       - anaconda/2023-02
       - anaconda/2023-03
+      - anaconda/2023-04
     requirements:
       mem: 8G
       time: 00:15:00

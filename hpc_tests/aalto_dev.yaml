@@ -10,6 +10,7 @@ tests:
       - anaconda/2023-01
       - anaconda/2023-02
       - anaconda/2023-03
+      - anaconda/2023-04
     extra_modules:
       - triton-dev/anaconda
     requirements:
@@ -28,6 +29,8 @@ tests:
       - anaconda/2023-01
       - anaconda/2023-02
       - anaconda/2023-03
+      - anaconda/2023-04
+      - neuroimaging/2023-03
     extra_modules:
       - triton-dev/anaconda
     requirements:
@@ -57,6 +60,8 @@ tests:
       - anaconda/2023-01
       - anaconda/2023-02
       - anaconda/2023-03
+      - anaconda/2023-04
+      - neuroimaging/2023-03
     extra_modules:
       - triton-dev/anaconda
     requirements:
@@ -70,6 +75,7 @@ tests:
       - anaconda/2023-01
       - anaconda/2023-02
       - anaconda/2023-03
+      - anaconda/2023-04
     extra_modules:
       - triton-dev/anaconda
     requirements:
