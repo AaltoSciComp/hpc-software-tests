@@ -17,9 +17,16 @@ fi
 
 rm -rf damBreak
 
-cp -r $FOAM_TUTORIALS/multiphase/interFoam/laminar/damBreak/damBreak damBreak
+if [[ -d "$FOAM_TUTORIALS/multiphase/interFoam/laminar/damBreak/damBreak" ]]
+then
+    cp -r $FOAM_TUTORIALS/multiphase/interFoam/laminar/damBreak/damBreak damBreak
+else
+    cp -r $FOAM_TUTORIALS/incompressibleVoF/damBreakLaminar/damBreak damBreak
+fi
 
 cd damBreak
+
+[[ -d "0.orig" ]] && mv "0.orig" "0"
 
 blockMesh
 decomposePar
