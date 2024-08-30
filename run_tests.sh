@@ -55,7 +55,7 @@ case $ARG in
 esac
 done
 
-module load anaconda
+module load scicomp-python-env
 
 if [[ ! -z "$LIST_TESTS" ]]; then
   pytest --collect-only --conf $CONF 
