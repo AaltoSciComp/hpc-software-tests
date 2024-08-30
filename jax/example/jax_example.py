@@ -43,11 +43,11 @@ print(True)
 
 print("Testing that JAX used GPUs:")
 
-device = jnp.ones(3).device_buffer.device()
+device = list(jnp.ones(3).devices())[0]
 
-#print(device)
+print(str(device))
 
-assert str(device) == "gpu:0"
+assert str(device) == "cuda:0"
 
 print(True)
 
