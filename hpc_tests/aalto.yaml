@@ -2,15 +2,7 @@ tests:
   tensorflow_beginner:
     script: 'tensorflow/beginner/run_tensorflow_beginner.sh'
     modules:
-      - anaconda/2021-03-tf2
-      - anaconda/2021-04-tf2
-      - anaconda/2022-01
-      - anaconda/2022-02
-      - anaconda/2022-03
-      - anaconda/2023-01
-      - anaconda/2023-02
-      - anaconda/2023-03
-      - anaconda/2023-04
+      - scicomp-python-env/2024-01
     requirements:
       mem: 8G
       time: 00:15:00
@@ -19,16 +11,7 @@ tests:
   pytorch_mnist-example:
     script: 'pytorch/mnist-example/run_pytorch_mnist-example.sh'
     modules:
-      - anaconda/2021-03-tf2
-      - anaconda/2021-04-tf2
-      - anaconda/2022-01
-      - anaconda/2022-02
-      - anaconda/2022-03
-      - anaconda/2023-01
-      - anaconda/2023-02
-      - anaconda/2023-03
-      - anaconda/2023-04
-      - neuroimaging/2023-03
+      - scicomp-python-env/2024-01
     requirements:
       mem: 8G
       time: 00:15:00
@@ -37,7 +20,7 @@ tests:
   jax-example:
     script: 'jax/example/run_jax_example.sh'
     modules:
-      - anaconda/2023-02
+      - scicomp-python-env/2024-01
     requirements:
       mem: 8G
       time: 00:15:00
@@ -46,16 +29,7 @@ tests:
   numpy_blas-benchmark:
     script: 'numpy/blas-benchmark/run_blas-benchmark.sh'
     modules:
-      - anaconda/2021-03-tf2
-      - anaconda/2021-04-tf2
-      - anaconda/2022-01
-      - anaconda/2022-02
-      - anaconda/2022-03
-      - anaconda/2023-01
-      - anaconda/2023-02
-      - anaconda/2023-03
-      - anaconda/2023-04
-      - neuroimaging/2023-03
+      - scicomp-python-env/2024-01
     requirements:
       mem: 8G
       time: 00:15:00
@@ -63,11 +37,7 @@ tests:
   gurobi_introduction-to-modeling:
     script: 'gurobi/introduction-to-modeling/run_gurobi_introduction-to-modeling.sh'
     modules:
-      - anaconda/2022-03
-      - anaconda/2023-01
-      - anaconda/2023-02
-      - anaconda/2023-03
-      - anaconda/2023-04
+      - scicomp-python-env/2024-01
     requirements:
       mem: 8G
       time: 00:15:00
@@ -93,13 +63,13 @@ tests:
   icc_hello-world:
     script: 'c/hello-world/run_hello-world.sh'
     modules:
-      - intel-oneapi-compilers/2021.2.0
-      - intel-oneapi-compilers/2021.3.0
+      - intel-oneapi-compilers/2023.2.1
     requirements:
       mem: 1G
       time: 00:15:00
     extra_modules:
-      - gcc/8.4.0
+      - gcc/12.3.0
+      - binutils
     environment:
       LC_ALL: 'C'
       LANG: 'C'
@@ -115,14 +85,13 @@ tests:
   ifort_hello-world:
     script: 'fortran/hello-world/run_hello-world.sh'
     modules:
-      - intel-oneapi-compilers/2021.2.0
-      - intel-oneapi-compilers/2021.3.0
-      - intel-oneapi-compilers/2021.4.0
+      - intel-oneapi-compilers/2023.2.1
     requirements:
       mem: 1G
       time: 00:15:00
     extra_modules:
-      - gcc/8.4.0
+      - gcc/12.3.0
+      - binutils
     environment:
       LC_ALL: 'C'
       LANG: 'C'
@@ -211,8 +180,11 @@ tests:
   openfoam_dambreak-example:
     script: 'openfoam/dambreak-example/run_dambreak-example.sh'
     modules:
-     # - openfoam/1906-openmpi-metis
-      - openfoam-org/9-openmpi-metis
+      - openfoam/2306
+      - openfoam-org/10
+      - openfoam-org/11
+    extra_modules:
+      - openmpi/4.1.6
     requirements:
       ntasks: 4
       mem: 4G

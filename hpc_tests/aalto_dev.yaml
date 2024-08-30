@@ -2,17 +2,9 @@ tests:
   tensorflow_beginner:
     script: 'tensorflow/beginner/run_tensorflow_beginner.sh'
     modules:
-      - anaconda/2021-03-tf2
-      - anaconda/2021-04-tf2
-      - anaconda/2022-01
-      - anaconda/2022-02
-      - anaconda/2022-03
-      - anaconda/2023-01
-      - anaconda/2023-02
-      - anaconda/2023-03
-      - anaconda/2023-04
+      - scicomp-python-env/2024-01
     extra_modules:
-      - triton-dev/anaconda
+      - scibuilder-mamba-dev
     requirements:
       mem: 8G
       time: 00:15:00
@@ -21,18 +13,9 @@ tests:
   pytorch_mnist-example:
     script: 'pytorch/mnist-example/run_pytorch_mnist-example.sh'
     modules:
-      - anaconda/2021-03-tf2
-      - anaconda/2021-04-tf2
-      - anaconda/2022-01
-      - anaconda/2022-02
-      - anaconda/2022-03
-      - anaconda/2023-01
-      - anaconda/2023-02
-      - anaconda/2023-03
-      - anaconda/2023-04
-      - neuroimaging/2023-03
+      - scicomp-python-env/2024-01
     extra_modules:
-      - triton-dev/anaconda
+      - scibuilder-mamba-dev
     requirements:
       mem: 8G
       time: 00:15:00
@@ -41,9 +24,9 @@ tests:
   jax-example:
     script: 'jax/example/run_jax_example.sh'
     modules:
-      - anaconda/2023-02
+      - scicomp-python-env/2024-01
     extra_modules:
-      - triton-dev/anaconda
+      - scibuilder-mamba-dev
     requirements:
       mem: 8G
       time: 00:15:00
@@ -52,18 +35,9 @@ tests:
   numpy_blas-benchmark:
     script: 'numpy/blas-benchmark/run_blas-benchmark.sh'
     modules:
-      - anaconda/2021-03-tf2
-      - anaconda/2021-04-tf2
-      - anaconda/2022-01
-      - anaconda/2022-02
-      - anaconda/2022-03
-      - anaconda/2023-01
-      - anaconda/2023-02
-      - anaconda/2023-03
-      - anaconda/2023-04
-      - neuroimaging/2023-03
+      - scicomp-python-env/2024-01
     extra_modules:
-      - triton-dev/anaconda
+      - scibuilder-mamba-dev
     requirements:
       mem: 8G
       time: 00:15:00
@@ -71,13 +45,9 @@ tests:
   gurobi_introduction-to-modeling:
     script: 'gurobi/introduction-to-modeling/run_gurobi_introduction-to-modeling.sh'
     modules:
-      - anaconda/2022-03
-      - anaconda/2023-01
-      - anaconda/2023-02
-      - anaconda/2023-03
-      - anaconda/2023-04
+      - scicomp-python-env/2024-01
     extra_modules:
-      - triton-dev/anaconda
+      - scibuilder-mamba-dev
     requirements:
       mem: 8G
       time: 00:15:00
@@ -87,7 +57,7 @@ tests:
       - gurobi/9.1.2
       - gurobi/9.5.2
     extra_modules:
-      - triton-dev/spack
+      - scibuilder-spack-dev
       - gcc/8.4.0
     requirements:
       mem: 8G
@@ -99,22 +69,21 @@ tests:
       - gcc/9.3.0
       - gcc/11.2.0
     extra_modules:
-      - triton-dev/spack
+      - scibuilder-spack-dev
     requirements:
       mem: 1G
       time: 00:15:00
   icc_hello-world:
     script: 'c/hello-world/run_hello-world.sh'
     modules:
-      - intel-oneapi-compilers/2021.2.0
-      - intel-oneapi-compilers/2021.3.0
-      - intel-oneapi-compilers/2021.4.0
+      - intel-oneapi-compilers/2023.2.1
     requirements:
       mem: 1G
       time: 00:15:00
     extra_modules:
-      - triton-dev/spack
-      - gcc/8.4.0
+      - scibuilder-spack-dev
+      - gcc/12.3.0
+      - binutils
     environment:
       LC_ALL: 'C'
       LANG: 'C'
@@ -125,22 +94,21 @@ tests:
       - gcc/9.3.0
       - gcc/11.2.0
     extra_modules:
-      - triton-dev/spack
+      - scibuilder-spack-dev
     requirements:
       mem: 1G
       time: 00:15:00
   ifort_hello-world:
     script: 'fortran/hello-world/run_hello-world.sh'
     modules:
-      - intel-oneapi-compilers/2021.2.0
-      - intel-oneapi-compilers/2021.3.0
-      - intel-oneapi-compilers/2021.4.0
+      - intel-oneapi-compilers/2023.2.1
     requirements:
       mem: 1G
       time: 00:15:00
     extra_modules:
-      - triton-dev/spack
-      - gcc/8.4.0
+      - scibuilder-spack-dev
+      - gcc/12.3.0
+      - binutils
     environment:
       LC_ALL: 'C'
       LANG: 'C'
@@ -152,7 +120,7 @@ tests:
       mem: 1G
       time: 00:15:00
     extra_modules:
-      - triton-dev/spack
+      - scibuilder-spack-dev
       - gcc/8.4.0
     environment:
       BLAS_FLAGS: '-lopenblas -lpthread -lm'
@@ -164,7 +132,7 @@ tests:
       mem: 1G
       time: 00:15:00
     extra_modules:
-      - triton-dev/spack
+      - scibuilder-spack-dev
       - gcc/8.4.0
     environment:
       BLAS_FLAGS: '-lmkl_intel_lp64 -lmkl_sequential -lmkl_core -lpthread -lm -DUSE_MKL'
@@ -179,7 +147,7 @@ tests:
       mem: 1G
       time: 00:15:00
     extra_modules:
-      - triton-dev/spack
+      - scibuilder-spack-dev
       - gcc/8.4.0
       #- intel-oneapi-compilers/2021.3.0
     environment:
@@ -192,7 +160,7 @@ tests:
       - openmpi/4.0.5
       - mpich/3.4.2
     extra_modules:
-      - triton-dev/spack
+      - scibuilder-spack-dev
       - gcc/8.4.0
     requirements:
       mem: 2G
@@ -204,7 +172,7 @@ tests:
       - openmpi/4.0.5
       - mpich/3.4.2
     extra_modules:
-      - triton-dev/spack
+      - scibuilder-spack-dev
       - gcc/8.4.0
       - intel-oneapi-compilers/2021.4.0
     requirements:
@@ -223,7 +191,7 @@ tests:
     modules:
       - gcc/8.4.0
     extra_modules:
-      - triton-dev/spack
+      - scibuilder-spack-dev
     requirements:
       mem: 1G
       time: 00:15:00
@@ -232,17 +200,19 @@ tests:
     modules:
       - openbabel/3.1.1-python3
     extra_modules:
-      - triton-dev/spack
+      - scibuilder-spack-dev
     requirements:
       mem: 1G
       time: 00:15:00
   openfoam_dambreak-example:
     script: 'openfoam/dambreak-example/run_dambreak-example.sh'
     modules:
-     # - openfoam/1906-openmpi-metis
-      - openfoam-org/9-openmpi-metis
+      - openfoam/2306
+      - openfoam-org/10
+      - openfoam-org/11
     extra_modules:
-      - triton-dev/spack
+      - scibuilder-spack-dev
+      - openmpi/4.1.6
     requirements:
       ntasks: 4
       mem: 4G
@@ -252,7 +222,7 @@ tests:
     modules:
       - suite-sparse/5.10.1
     extra_modules:
-      - triton-dev/spack
+      - scibuilder-spack-dev
       - gcc/8.4.0
     requirements:
       mem: 4G
@@ -262,7 +232,7 @@ tests:
     modules:
       - orca/4.2.1-openmpi
     extra_modules:
-      - triton-dev/spack
+      - scibuilder-spack-dev
     requirements:
       mem: 4G
       time: 00:15:00
