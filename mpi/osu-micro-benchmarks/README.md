@@ -33,3 +33,7 @@ Outputs will be written to `output/<mpi-module>/<mpi-version>.out`.
 - For OpenMPI 3.1.4 with UCX the following tests will hang: `osu_acc_latency`,`osu_fop_latency` and `osu_get_acc_latency`. It can be skipped by removing them from `bin/openmpi/3.1.4/libexec/osu-micro-benchmarks/mpi/one-sided/`
 
 To remove said problems, one can run e.g. `rm bin/openmpi/*/libexec/osu-micro-benchmarks/mpi/one-sided/{osu_acc_latency,osu_fop_latency,osu_get_acc_latency} bin/openmpi/*/libexec/osu-micro-benchmarks/mpi/pt2pt/osu_latency_mt`
+
+- UCX does not support atomic operations for 8 and 16 bit datatypes. This causes errors in tests `osu_latency_mt` and `osu_cas_latency`. For more info, see [this issue](https://github.com/open-mpi/ompi/issues/6777).
+
+To remove said problems, one can run `find bin -name 'osu_latency_mt' -or -name 'osu_cas_latency' -delete`
