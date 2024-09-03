@@ -52,9 +52,21 @@ run_test() {
     TEST_FILE=$(readlink -f $1)
     TEST_FOLDER=$(dirname $TEST_FILE)
     TEST_NAME=$(basename $TEST_FILE)
-    echo 'Running test '$TEST_NAME':'
     cd $TEST_FOLDER
-    srun $TEST_NAME
+
+    case $TEST_NAME in
+
+        osu_cas_latency | osu_fop_latency)
+            EXTRA_ARGS="-T mpi_int"
+            ;;
+
+        *)
+            EXTRA_ARGS=""
+            ;;
+    esac
+    echo "Running test $TEST_NAME (extra args: $EXTRA_ARGS):"
+
+    srun $TEST_NAME $EXTRA_ARGS
     cd $CURRENT_FOLDER
 }
 
