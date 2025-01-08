@@ -3,6 +3,7 @@ tests:
     script: 'tensorflow/beginner/run_tensorflow_beginner.sh'
     modules:
       - scicomp-python-env/2024-01
+      - scicomp-python-env/2025-01
     extra_modules:
       - scibuilder-mamba-dev
     requirements:
@@ -14,6 +15,7 @@ tests:
     script: 'pytorch/mnist-example/run_pytorch_mnist-example.sh'
     modules:
       - scicomp-python-env/2024-01
+      - scicomp-python-env/2025-01
     extra_modules:
       - scibuilder-mamba-dev
     requirements:
@@ -25,6 +27,7 @@ tests:
     script: 'jax/example/run_jax_example.sh'
     modules:
       - scicomp-python-env/2024-01
+      - scicomp-python-env/2025-01
     extra_modules:
       - scibuilder-mamba-dev
     requirements:
@@ -36,22 +39,22 @@ tests:
     script: 'numpy/blas-benchmark/run_blas-benchmark.sh'
     modules:
       - scicomp-python-env/2024-01
+      - scicomp-python-env/2025-01
     extra_modules:
       - scibuilder-mamba-dev
     requirements:
       mem: 8G
       time: 00:15:00
       cpus-per-task: 4
-  # Test currently broken
-  # gurobi_introduction-to-modeling:
-  #   script: 'gurobi/introduction-to-modeling/run_gurobi_introduction-to-modeling.sh'
-  #   modules:
-  #     - scicomp-python-env/2024-01
-  #   extra_modules:
-  #     - scibuilder-mamba-dev
-  #   requirements:
-  #     mem: 8G
-  #     time: 00:15:00
+  gurobi_introduction-to-modeling:
+    script: 'gurobi/introduction-to-modeling/run_gurobi_introduction-to-modeling.sh'
+    modules:
+      - scicomp-python-env/2024-01
+    extra_modules:
+      - scibuilder-mamba-dev
+    requirements:
+      mem: 8G
+      time: 00:15:00
   # Currently not installed
   #gurobi_c-examples:
   #  script: 'gurobi/c-examples/run_gurobi_c-examples.sh'
@@ -64,6 +67,28 @@ tests:
   #  requirements:
   #    mem: 8G
   #    time: 00:15:00
+  gurobi_introduction-to-modeling:
+    script: 'gurobi/introduction-to-modeling/run_gurobi_introduction-to-modeling.sh'
+    modules:
+      - scicomp-python-env/2024-01
+      - scicomp-python-env/2025-01
+    extra_modules:
+      - scibuilder-mamba-dev
+    requirements:
+      mem: 8G
+      time: 00:15:00
+  gurobi_c-examples:
+    script: 'gurobi/c-examples/run_gurobi_c-examples.sh'
+    modules:
+      - gurobi/9.1.2
+      - gurobi/9.5.2
+    extra_modules:
+      - scibuilder-spack-dev
+      - gcc/8.4.0
+    requirements:
+      mem: 8G
+      time: 00:15:00
+>>>>>>> d6e3626 (hpc_tests/aalto_dev: Add tests for scicomp-python-env/2025.1)
   gcc_hello-world:
     script: 'c/hello-world/run_hello-world.sh'
     modules:
