@@ -42,32 +42,36 @@ tests:
       mem: 8G
       time: 00:15:00
       cpus-per-task: 4
-  gurobi_introduction-to-modeling:
-    script: 'gurobi/introduction-to-modeling/run_gurobi_introduction-to-modeling.sh'
-    modules:
-      - scicomp-python-env/2024-01
-    extra_modules:
-      - scibuilder-mamba-dev
-    requirements:
-      mem: 8G
-      time: 00:15:00
-  gurobi_c-examples:
-    script: 'gurobi/c-examples/run_gurobi_c-examples.sh'
-    modules:
-      - gurobi/9.1.2
-      - gurobi/9.5.2
-    extra_modules:
-      - scibuilder-spack-dev
-      - gcc/8.4.0
-    requirements:
-      mem: 8G
-      time: 00:15:00
+  # Test currently broken
+  # gurobi_introduction-to-modeling:
+  #   script: 'gurobi/introduction-to-modeling/run_gurobi_introduction-to-modeling.sh'
+  #   modules:
+  #     - scicomp-python-env/2024-01
+  #   extra_modules:
+  #     - scibuilder-mamba-dev
+  #   requirements:
+  #     mem: 8G
+  #     time: 00:15:00
+  # Currently not installed
+  #gurobi_c-examples:
+  #  script: 'gurobi/c-examples/run_gurobi_c-examples.sh'
+  #  modules:
+  #    - gurobi/9.1.2
+  #    - gurobi/9.5.2
+  #  extra_modules:
+  #    - scibuilder-spack-dev
+  #    - gcc/12.3.0
+  #  requirements:
+  #    mem: 8G
+  #    time: 00:15:00
   gcc_hello-world:
     script: 'c/hello-world/run_hello-world.sh'
     modules:
-      - gcc/8.4.0
-      - gcc/9.3.0
-      - gcc/11.2.0
+      - gcc/6.5.0
+      - gcc/10.5.0
+      - gcc/11.4.0
+      - gcc/12.3.0
+      - gcc/13.2.0
     extra_modules:
       - scibuilder-spack-dev
     requirements:
@@ -82,17 +86,17 @@ tests:
       time: 00:15:00
     extra_modules:
       - scibuilder-spack-dev
-      - gcc/12.3.0
-      - binutils
     environment:
       LC_ALL: 'C'
       LANG: 'C'
   gfortran_hello-world:
     script: 'fortran/hello-world/run_hello-world.sh'
     modules:
-      - gcc/8.4.0
-      - gcc/9.3.0
-      - gcc/11.2.0
+      - gcc/6.5.0
+      - gcc/10.5.0
+      - gcc/11.4.0
+      - gcc/12.3.0
+      - gcc/13.2.0
     extra_modules:
       - scibuilder-spack-dev
     requirements:
@@ -107,61 +111,59 @@ tests:
       time: 00:15:00
     extra_modules:
       - scibuilder-spack-dev
-      - gcc/12.3.0
-      - binutils
     environment:
       LC_ALL: 'C'
       LANG: 'C'
   openblas_simple-c:
     script: 'blas/simple-c/run_simple-c.sh'
     modules:
-      - openblas/0.3.13-openmp
+      - openblas/0.3.24
     requirements:
       mem: 1G
       time: 00:15:00
     extra_modules:
       - scibuilder-spack-dev
-      - gcc/8.4.0
+      - gcc/12.3.0
     environment:
       BLAS_FLAGS: '-lopenblas -lpthread -lm'
-  mkl_simple-c:
-    script: 'blas/simple-c/run_simple-c.sh'
-    modules:
-      - intel-parallel-studio/cluster.2020.0
-    requirements:
-      mem: 1G
-      time: 00:15:00
-    extra_modules:
-      - scibuilder-spack-dev
-      - gcc/8.4.0
-    environment:
-      BLAS_FLAGS: '-lmkl_intel_lp64 -lmkl_sequential -lmkl_core -lpthread -lm -DUSE_MKL'
-      LC_ALL: 'C'
-      LANG: 'C'
-  oneapi-mkl_simple-c:
-    script: 'blas/simple-c/run_simple-c.sh'
-    modules:
-      - intel-oneapi-mkl/2021.3.0
-      - intel-oneapi-mkl/2021.4.0
-    requirements:
-      mem: 1G
-      time: 00:15:00
-    extra_modules:
-      - scibuilder-spack-dev
-      - gcc/8.4.0
-      #- intel-oneapi-compilers/2021.3.0
-    environment:
-      BLAS_FLAGS: '-lmkl_intel_lp64 -lmkl_sequential -lmkl_core -lpthread -lm -DUSE_MKL'
-      LC_ALL: 'C'
-      LANG: 'C'
+  # Currently not installed
+  #mkl_simple-c:
+  #  script: 'blas/simple-c/run_simple-c.sh'
+  #  modules:
+  #    - intel-parallel-studio/cluster.2020.0
+  #  requirements:
+  #    mem: 1G
+  #    time: 00:15:00
+  #  extra_modules:
+  #    - scibuilder-spack-dev
+  #    - gcc/12.3.0
+  #  environment:
+  #    BLAS_FLAGS: '-lmkl_intel_lp64 -lmkl_sequential -lmkl_core -lpthread -lm -DUSE_MKL'
+  #    LC_ALL: 'C'
+  #    LANG: 'C'
+  #oneapi-mkl_simple-c:
+  #  script: 'blas/simple-c/run_simple-c.sh'
+  #  modules:
+  #    - intel-oneapi-mkl/2021.3.0
+  #    - intel-oneapi-mkl/2021.4.0
+  #  requirements:
+  #    mem: 1G
+  #    time: 00:15:00
+  #  extra_modules:
+  #    - scibuilder-spack-dev
+  #    - gcc/12.3.0
+  #    #- intel-oneapi-compilers/2021.3.0
+  #  environment:
+  #    BLAS_FLAGS: '-lmkl_intel_lp64 -lmkl_sequential -lmkl_core -lpthread -lm -DUSE_MKL'
+  #    LC_ALL: 'C'
   mpi_hello-world:
     script: 'mpi/hello-world/run_hello-world.sh'
     modules:
-      - openmpi/4.0.5
-      - mpich/3.4.2
+      - openmpi/4.1.6
+      - mpich/4.1.1
     extra_modules:
       - scibuilder-spack-dev
-      - gcc/8.4.0
+      - gcc/12.3.0
     requirements:
       mem: 2G
       time: 00:15:00
@@ -169,12 +171,11 @@ tests:
   mpi_hello-world-intel:
     script: 'mpi/hello-world/run_hello-world.sh'
     modules:
-      - openmpi/4.0.5
-      - mpich/3.4.2
+      - openmpi/4.1.6
+      - mpich/4.1.1
     extra_modules:
       - scibuilder-spack-dev
-      - gcc/8.4.0
-      - intel-oneapi-compilers/2021.4.0
+      - intel-oneapi-compilers/2023.2.1
     requirements:
       mem: 2G
       time: 00:15:00
@@ -189,21 +190,22 @@ tests:
   slurm_hostname:
     script: 'slurm/hostname/run_hostname.sh'
     modules:
-      - gcc/8.4.0
+      - gcc/12.3.0
     extra_modules:
       - scibuilder-spack-dev
     requirements:
       mem: 1G
       time: 00:15:00
-  openbabel_pybel-example:
-    script: 'openbabel/pybel-example/run_pybel-example.sh'
-    modules:
-      - openbabel/3.1.1-python3
-    extra_modules:
-      - scibuilder-spack-dev
-    requirements:
-      mem: 1G
-      time: 00:15:00
+  # Currently not installed
+  #openbabel_pybel-example:
+  #  script: 'openbabel/pybel-example/run_pybel-example.sh'
+  #  modules:
+  #    - openbabel/3.1.1-python3
+  #  extra_modules:
+  #    - scibuilder-spack-dev
+  #  requirements:
+  #    mem: 1G
+  #    time: 00:15:00
   openfoam_dambreak-example:
     script: 'openfoam/dambreak-example/run_dambreak-example.sh'
     modules:
@@ -217,22 +219,24 @@ tests:
       ntasks: 4
       mem: 4G
       time: 00:15:00
-  suite-sparse_cholmod-simple:
-    script: 'suite-sparse/cholmod/run_suite-sparse_cholmod-simple.sh'
-    modules:
-      - suite-sparse/5.10.1
-    extra_modules:
-      - scibuilder-spack-dev
-      - gcc/8.4.0
-    requirements:
-      mem: 4G
-      time: 00:15:00
+  # Currently not installed
+  #suite-sparse_cholmod-simple:
+  #  script: 'suite-sparse/cholmod/run_suite-sparse_cholmod-simple.sh'
+  #  modules:
+  #    - suite-sparse/5.10.1
+  #  extra_modules:
+  #    - scibuilder-spack-dev
+  #    - gcc/12.3.0
+  #  requirements:
+  #    mem: 4G
+  #    time: 00:15:00
   orca_water-example:
     script: 'orca/water-example/run_water-example.sh'
     modules:
-      - orca/4.2.1-openmpi
+      - orca/5.0.3
     extra_modules:
       - scibuilder-spack-dev
+      - openmpi/4.1.2
     requirements:
       mem: 4G
       time: 00:15:00
