@@ -1,0 +1,34 @@
+global:
+  requirements:
+#    reservation: image_test_20250124
+#    partition: gpu-p100-16g
+tests:
+  tensorflow_beginner:
+   script: 'tensorflow/beginner/run_tensorflow_beginner.sh'
+    modules:
+      - scicomp-python-env/2024-01
+    requirements:
+      mem: 8G
+      time: 00:15:00
+      gres: gpu:1
+      constraint: "[volta|ampere|pascal]"
+  pytorch_mnist-example:
+    script: 'pytorch/mnist-example/run_pytorch_mnist-example.sh'
+    modules:
+      - scicomp-python-env/2024-01
+    requirements:
+      mem: 8G
+      time: 00:15:00
+      gres: gpu:1
+      constraint: "[volta|ampere|pascal]"
+  jax-example:
+    script: 'jax/example/run_jax_example.sh'
+    modules:
+      - scicomp-python-env/2024-01
+    requirements:
+      mem: 8G
+      time: 00:15:00
+      gres: gpu:2
+      constraint: "[volta|ampere|pascal]"
+
+

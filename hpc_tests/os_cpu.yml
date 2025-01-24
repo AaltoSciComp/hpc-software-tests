@@ -1,0 +1,17 @@
+global:
+  requirements:
+#    reservation: image_test_20250124
+#    partition: batch-csl
+tests:
+  mpi_hello-world:
+    script: 'mpi/hello-world/run_hello-world.sh'
+    modules:
+      - openmpi/4.1.6
+    extra_modules:
+      - gcc/13.2.0
+    requirements:
+      mem: 2G
+      time: 00:15:00
+      ntasks-per-node: 1
+      nodes: 1-1
+
