@@ -1,8 +1,19 @@
 global:
   requirements:
-#    reservation: image_test_20250124
-#    partition: batch-csl
+    reservation: image_test_20250127
+    partition: batch-csl
 tests:
+  ior_ior-test:
+    script: ior/ior-test/run_ior-test.sh
+    modules:
+      - ior/3.3.0
+    extra_modules:
+      - openmpi/4.1.6
+    requirements:
+      mem: 10G
+      time: 00:15:00
+      ntasks-per-node: 20
+      nodes: 2-2
   mpi_hello-world:
     script: 'mpi/hello-world/run_hello-world.sh'
     modules:
@@ -12,6 +23,6 @@ tests:
     requirements:
       mem: 2G
       time: 00:15:00
-      ntasks-per-node: 1
-      nodes: 1-1
+      ntasks-per-node: 8
+      nodes: 2-2
 
