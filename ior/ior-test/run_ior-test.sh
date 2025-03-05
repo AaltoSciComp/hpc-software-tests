@@ -14,13 +14,42 @@ if [[ "$#" -gt 0 ]]; then
     module load $MODULES
 fi
 
+nITERS=5
+
 #IOR_PARAMS="-c"
 #IOR_PARAMS="-t 1m -b 16m -s 16 -F"
-PARAMS=("-c -a MPIIO -t 1m -b 16m -s 16 -i5" "-c -a HDF5 -t 1m -b 16m -s 16 -i5"  "-c -a POSIX -t 1m -b 16m -s 16 -i5 -F")
+PARAMS=("-c -a MPIIO -t 1m -b 16m -s 16 -i $nITERS" "-c -a HDF5 -t 1m -b 16m -s 16 -i $nITERS"  "-c -a POSIX -t 1m -b 16m -s 16 -i $nITERS -F")
 
-# The following are for two csl nodes: "--nodes=2 --tasks-per-node=20"
-WRITESP=(1600 800 15000)
-READSP=(1600 800 50000)
+echo "running on $HOSTNAME ($SLURM_JOB_NODELIST)"
+
+HOST_SHORT=$( hostname -s )
+HOSTNAME_STRIPPED=${HOST_SHORT//[0-9]/}
+
+case "$HOSTNAME_STRIPPED" in
+  *milan*)
+    WRITESP=(1200 550 14000)
+    READSP=(1500 400 100000)
+    ;;
+  *csl*)
+    # The following are for two csl nodes: "--nodes=2 --tasks-per-node=20"
+    WRITESP=(1600 800 15000)
+    READSP=(1600 800 50000)
+    ;;
+  *skl*)
+    # The following are for two skl nodes: "--nodes=2 --tasks-per-node=20"
+    WRITESP=(1400 700 15000)
+    READSP=(1400 600 45000)
+    ;;
+  *pe*)
+    WRITESP=(100 100 100)
+    READSP=(100 100 100)
+    ;;
+  *)
+      echo No speed requirement given
+      exit 2
+    ;;
+esac
+
 	    
 if [[ $(command -v srun) ]]; then
     echo 'Launching with srun'
@@ -50,7 +79,8 @@ BEGIN {
         exit 1  # Unsuccessful comparison, num1 is not greater
     }
 }'	; then
-	    exit $?
+	    echo FAIL exit
+	    exit 2
 	fi
 	echo mean write speed OK
 	
@@ -64,7 +94,8 @@ BEGIN {
         exit 1  # Unsuccessful comparison, num1 is not greater
     }
 }'	; then
-	    exit $?
+	    echo FAIL exit
+	    exit 2
 	fi
 	echo mean read speed OK
 
