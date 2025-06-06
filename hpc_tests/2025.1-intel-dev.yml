@@ -1,0 +1,44 @@
+global:
+  extra_modules:
+    - triton-dev/2025.1-intel
+tests:
+  gcc_hello-world:
+    script: 'c/hello-world/run_hello-world.sh'
+    modules:
+     - gcc/13.3.0
+    requirements:
+      mem: 1G
+      time: 00:15:00
+  gfortran_hello-world:
+    script: 'fortran/hello-world/run_hello-world.sh'
+    modules:
+      - gcc/13.3.0
+    requirements:
+      mem: 1G
+      time: 00:15:00
+  openblas_simple-c:
+    script: 'blas/simple-c/run_simple-c.sh'
+    modules:
+      - openblas/0.3.28
+    requirements:
+      mem: 1G
+      time: 00:15:00
+    extra_modules:
+      - gcc/13.3.0
+    environment:
+      BLAS_FLAGS: '-lopenblas -lpthread -lm'
+  mpi_hello-world:
+    script: 'mpi/hello-world/run_hello-world.sh'
+    modules:
+      - openmpi/5.0.3
+    requirements:
+      mem: 2G
+      time: 00:15:00
+      ntasks-per-node: 2
+  slurm_hostname:
+    script: 'slurm/hostname/run_hostname.sh'
+    modules:
+      - gcc/13.3.0
+    requirements:
+      mem: 1G
+      time: 00:15:00
