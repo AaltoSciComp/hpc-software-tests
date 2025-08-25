@@ -14,6 +14,12 @@ fi
 
 EXAMPLE_SCRIPT=pytorch_mnist-example.py
 
-curl -L -o $EXAMPLE_SCRIPT https://raw.githubusercontent.com/pytorch/examples/main/mnist/main.py
+# Fixed version without .accelerator
+EXAMPLE_URL="https://raw.githubusercontent.com/pytorch/examples/47d0c2eff22201df7742c2de3fe5723dd6cebe0d/mnist/main.py"
+
+# Latest
+#EXAMPLE_URL="https://raw.githubusercontent.com/pytorch/examples/main/mnist/main.py"
+
+curl -L -o $EXAMPLE_SCRIPT $EXAMPLE_URL
 
 python -u $EXAMPLE_SCRIPT --epochs 5
