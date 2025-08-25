@@ -1,5 +1,5 @@
 #!/bin/bash -l
-#SBATCH --mem=10G
+#SBATCH --mem=20G
 #SBATCH --ntasks-per-node=20
 #SBATCH --nodes=2-2
 #SBATCH --time=00:15:00
@@ -33,7 +33,7 @@ case "$HOSTNAME_STRIPPED" in
   *csl*)
     # The following are for two csl nodes: "--nodes=2 --tasks-per-node=20"
     WRITESP=(1600 800 15000)
-    READSP=(1600 800 50000)
+    READSP=(1500 600 40000)
     ;;
   *skl*)
     # The following are for two skl nodes: "--nodes=2 --tasks-per-node=20"
