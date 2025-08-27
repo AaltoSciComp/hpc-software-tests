@@ -71,7 +71,10 @@ result = pmap(lambda x: jnp.dot(x, x.T))(mats)  # result.shape is (8, 5000, 5000
 
 # Compute the mean on each device in parallel and print the result
 means = pmap(jnp.mean)(result)
-#print(means)
+print(means)
 # prints [1.1566595 1.1805978 ... 1.2321935 1.2015157]
 assert len(means) == ngpus
 print(True)
+
+print('All tests done ... Success!')
+exit(0)

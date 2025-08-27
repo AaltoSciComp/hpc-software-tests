@@ -14,6 +14,8 @@ if [[ "$#" -gt 0 ]]; then
     module load $MODULES
 fi
 
+echo SLURM_MEM_PER_NODE $SLURM_MEM_PER_NODE
+
 nITERS=5
 
 #IOR_PARAMS="-c"
@@ -37,8 +39,8 @@ case "$HOSTNAME_STRIPPED" in
     ;;
   *skl*)
     # The following are for two skl nodes: "--nodes=2 --tasks-per-node=20"
-    WRITESP=(1400 700 15000)
-    READSP=(1400 600 45000)
+    WRITESP=(1700 800 21000)
+    READSP=(600 350 90000)
     ;;
   *pe*)
     WRITESP=(100 100 100)

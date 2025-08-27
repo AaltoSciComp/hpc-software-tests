@@ -10,7 +10,7 @@ tests:
     extra_modules:
       - openmpi/4.1.6
     requirements:
-      mem: 10G
+      mem: 30G
       time: 00:15:00
       ntasks-per-node: 20
       nodes: 2-2
