@@ -25,4 +25,7 @@ if [ ! -e $EXAMPLE_SCRIPT ] ; then
     jupyter nbconvert $EXAMPLE_NOTEBOOK --to script --stdout > $EXAMPLE_SCRIPT
 fi
 
+# Fix tensorflow keras import problem
+grep -q 'import keras' $EXAMPLE_SCRIPT || sed -i '1s/^/import keras\n/' $EXAMPLE_SCRIPT
+
 python -u $EXAMPLE_SCRIPT
