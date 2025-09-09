@@ -3,41 +3,63 @@ tests:
     script: 'tensorflow/beginner/run_tensorflow_beginner.sh'
     modules:
       - scicomp-python-env/2024-01
+      - scicomp-python-env/2025.1
+      - scicomp-python-env/2025.2
     requirements:
       mem: 8G
       time: 00:15:00
-      gres: gpu:1
-      constraint: "[volta|ampere|pascal]"
+      gpus: 1
+      constraint: "volta"
   pytorch_mnist-example:
     script: 'pytorch/mnist-example/run_pytorch_mnist-example.sh'
     modules:
       - scicomp-python-env/2024-01
+      - scicomp-python-env/2025.1
+      - scicomp-python-env/2025.2
     requirements:
       mem: 8G
       time: 00:15:00
-      gres: gpu:1
-      constraint: "[volta|ampere|pascal]"
+      gpus: 1
+      constraint: "volta"
   jax-example:
     script: 'jax/example/run_jax_example.sh'
     modules:
       - scicomp-python-env/2024-01
+      - scicomp-python-env/2025.1
+      - scicomp-python-env/2025.2
     requirements:
       mem: 8G
       time: 00:15:00
-      gres: gpu:2
-      constraint: "[volta|ampere|pascal]"
+      gpus: 1
+      constraint: "volta"
   numpy_blas-benchmark:
     script: 'numpy/blas-benchmark/run_blas-benchmark.sh'
     modules:
       - scicomp-python-env/2024-01
+      - scicomp-python-env/2025.1
+      - scicomp-python-env/2025.2
     requirements:
       mem: 8G
       time: 00:15:00
       cpus-per-task: 4
+  mpi4py_numpy-example:
+    script: 'mpi4py/numpy-example/run_numpy-example.sh'
+    modules:
+      - scicomp-python-env/2024-01
+      - scicomp-python-env/2025.1
+      - scicomp-python-env/2025.2
+    requirements:
+      mem: 8G
+      time: 00:15:00
+      nodes: 2
+      ntasks-per-node: 1
+      cpus-per-task: 1
   gurobi_introduction-to-modeling:
     script: 'gurobi/introduction-to-modeling/run_gurobi_introduction-to-modeling.sh'
     modules:
       - scicomp-python-env/2024-01
+      - scicomp-python-env/2025.1
+      - scicomp-python-env/2025.2
     requirements:
       mem: 8G
       time: 00:15:00
