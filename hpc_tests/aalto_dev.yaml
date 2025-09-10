@@ -1,4 +1,17 @@
 tests:
+  accelerate_multi-gpu-trainer:
+    script: 'accelerate/multi-gpu-trainer/run_multi-gpu-trainer.sh'
+    modules:
+      - scicomp-python-env/2025.2
+    extra_modules:
+      - scibuilder-mamba-dev
+    requirements:
+      mem: 8G
+      time: 00:15:00
+      nodes: 1
+      gpus: 2
+      cpus-per-task: 8
+      constraint: "volta"
   tensorflow_beginner:
     script: 'tensorflow/beginner/run_tensorflow_beginner.sh'
     modules:
